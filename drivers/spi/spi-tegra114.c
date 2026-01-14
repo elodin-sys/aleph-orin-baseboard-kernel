@@ -870,6 +870,8 @@ static u32 tegra_spi_setup_transfer_one(struct spi_device *spi,
 			else
 				command1 &= ~SPI_CS_SW_VAL;
 		}
+		tspi->use_hw_based_cs = true;
+		command1 &= ~(SPI_CS_SW_HW | SPI_CS_SW_VAL);
 
 		if (!tspi->prod_list) {
 			if (tspi->last_used_cs != spi->chip_select) {
